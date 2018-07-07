@@ -10,4 +10,10 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 })
 
-app.listen(3000, () => console.log('Running on http://localhost:3000'))
+BACKEND_URL = { url: process.env.BACKEND_URL || 'http://localhost:4000/api/' }
+app.get('/backend_url', function (req, res) {
+  res.json(BACKEND_URL);
+})
+
+PORT = process.env.PORT || 3000
+app.listen(PORT, () => console.log(`Running on ${PORT}`))
